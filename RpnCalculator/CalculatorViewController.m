@@ -89,9 +89,17 @@
     }
 }
 
-
-- (void)viewDidUnload {
-    [self setHistory:nil];
-    [super viewDidUnload];
+- (IBAction)clearPressed 
+{
+    // clear the view
+    self.display.text = @"";
+    self.history.text = @"";
+    
+    self.userIsInTheMiddleOfEnteringAFloatingPointNumber = NO;
+    self.userIsInTheMiddleOfEnteringANumber = NO;
+    
+    // ask the brain to reset too
+    [self.brain reset];
 }
+
 @end

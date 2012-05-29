@@ -26,6 +26,10 @@
     return _operandStack;
 }
 
+- (void)reset
+{
+    [self.operandStack removeAllObjects];
+}
 
 - (void)pushOperand:(double)operand
 {
