@@ -70,6 +70,11 @@
             result = [self popOperand] / divisor;
         }
     }
+    else if ( [@"sin" isEqualToString:operation] )
+    {
+        // calculates the sine of the top operand on the stack
+        result = sin( [self popOperand] );
+    }
     
     [self pushOperand:result];
     
