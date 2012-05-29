@@ -12,12 +12,14 @@
 @interface CalculatorViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
+@property (nonatomic) BOOL userIsInTheMiddleOfEnteringAFloatingPointNumber;
 @end
 
 @implementation CalculatorViewController
 
 @synthesize display = _display;
 @synthesize brain = _brain;
+@synthesize userIsInTheMiddleOfEnteringAFloatingPointNumber = _userIsInTheMiddleOfEnteringAFloatingPointNumber;
 
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 
@@ -49,8 +51,11 @@
 
 - (IBAction)enterPressed 
 {
+    NSLog( @"operand pushed: %f", [self.display.text doubleValue] );
     [self.brain pushOperand:[self.display.text doubleValue]];
+    
     self.userIsInTheMiddleOfEnteringANumber = NO;
+    self.userIsInTheMiddleOfEnteringAFloatingPointNumber = NO;
 }
 
 - (IBAction)operationPressed:(UIButton *)sender 
@@ -63,5 +68,17 @@
     double result = [self.brain performOperation:sender.currentTitle];
     self.display.text = [NSString stringWithFormat:@"%g", result];  
 }
+
+- (IBAction)dotPressed 
+{
+    // With a valid floating point #, there should be only 1 dot
+    if ( !self.userIsInTheMiddleOfEnteringAFloatingPointNumber )
+    {
+        self.userIsInTheMiddleOfEnteringAFloatingPointNumber = YES;
+        self.display.text = [self.display.text stringByAppendingFormat:@"."];
+        self.userIsInTheMiddleOfEnteringANumber = YES;
+    }
+}
+
 
 @end
