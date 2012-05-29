@@ -77,8 +77,13 @@
     }
     else if ( [@"cos" isEqualToString:operation] )
     {
-        // calculates the sine of the top operand on the stack
+        // calculates the cosine of the top operand on the stack
         result = cos( [self popOperand] );
+    }
+    else if ( [@"sqrt" isEqualToString:operation] )
+    {
+        // calculates the square root of the top operand on the stack
+        result = sqrt( [self popOperand] );
     }
     
     [self pushOperand:result];
