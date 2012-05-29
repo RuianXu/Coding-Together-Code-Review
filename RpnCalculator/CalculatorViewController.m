@@ -60,7 +60,7 @@
     self.history.text = [self.history.text stringByAppendingFormat:@" "];
     
     self.userIsInTheMiddleOfEnteringANumber = NO;
-    self.userIsInTheMiddleOfEnteringAFloatingPointNumber = NO;
+    //    self.userIsInTheMiddleOfEnteringAFloatingPointNumber = NO;
 }
 
 - (IBAction)operationPressed:(UIButton *)sender 
@@ -78,14 +78,16 @@
 
 - (IBAction)dotPressed 
 {
+    [self enterPressed];
+    
     // With a valid floating point #, there should be only 1 dot
     if ( !self.userIsInTheMiddleOfEnteringAFloatingPointNumber )
     {
         self.userIsInTheMiddleOfEnteringAFloatingPointNumber = YES;
-        self.display.text = [self.display.text stringByAppendingFormat:@"."];
+        self.display.text = @"0.";
         self.userIsInTheMiddleOfEnteringANumber = YES;
         
-        self.history.text = [self.history.text stringByAppendingFormat:@"."];
+        self.history.text = [self.history.text stringByAppendingFormat:@"0."];
     }
 }
 
