@@ -75,6 +75,11 @@
         // calculates the sine of the top operand on the stack
         result = sin( [self popOperand] );
     }
+    else if ( [@"cos" isEqualToString:operation] )
+    {
+        // calculates the sine of the top operand on the stack
+        result = cos( [self popOperand] );
+    }
     
     [self pushOperand:result];
     
