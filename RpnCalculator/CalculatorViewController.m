@@ -18,6 +18,7 @@
 @implementation CalculatorViewController
 
 @synthesize display = _display;
+@synthesize history = _history;
 @synthesize brain = _brain;
 @synthesize userIsInTheMiddleOfEnteringAFloatingPointNumber = _userIsInTheMiddleOfEnteringAFloatingPointNumber;
 
@@ -47,12 +48,16 @@
         self.display.text = digit;
         self.userIsInTheMiddleOfEnteringANumber = YES;
     }
+    
+    self.history.text = [self.history.text stringByAppendingFormat:digit];
 }
 
 - (IBAction)enterPressed 
 {
     NSLog( @"operand pushed: %f", [self.display.text doubleValue] );
     [self.brain pushOperand:[self.display.text doubleValue]];
+    
+    self.history.text = [self.history.text stringByAppendingFormat:@" "];
     
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.userIsInTheMiddleOfEnteringAFloatingPointNumber = NO;
@@ -62,11 +67,13 @@
 {
     if ( self.userIsInTheMiddleOfEnteringANumber )
     {
+        self.history.text = [self.history.text stringByAppendingFormat:@" "];
+        self.history.text = [self.history.text stringByAppendingString:sender.currentTitle];
         [self enterPressed];
     }
     
     double result = [self.brain performOperation:sender.currentTitle];
-    self.display.text = [NSString stringWithFormat:@"%g", result];  
+    self.display.text = [NSString stringWithFormat:@"%g", result]; 
 }
 
 - (IBAction)dotPressed 
@@ -77,8 +84,14 @@
         self.userIsInTheMiddleOfEnteringAFloatingPointNumber = YES;
         self.display.text = [self.display.text stringByAppendingFormat:@"."];
         self.userIsInTheMiddleOfEnteringANumber = YES;
+        
+        self.history.text = [self.history.text stringByAppendingFormat:@"."];
     }
 }
 
 
+- (void)viewDidUnload {
+    [self setHistory:nil];
+    [super viewDidUnload];
+}
 @end
