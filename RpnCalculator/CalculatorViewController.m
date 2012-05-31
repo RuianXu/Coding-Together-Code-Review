@@ -104,4 +104,30 @@
     [self.brain reset];
 }
 
+/// "backspace" button
+- (IBAction)delPressed
+{
+    // "backspace" only takes effect when user is in the middle of entering a number
+    if ( self.userIsInTheMiddleOfEnteringANumber )
+    {
+        NSString *currentNumber = self.display.text;
+        int length = [currentNumber length];
+        if ( ( length > 0 ) && ![currentNumber isEqualToString:@"0"] )
+        {
+            self.display.text = [currentNumber substringToIndex:length - 1];
+            
+            // If this is the last one that is deleted, update the dispaly with "0"
+            if ( 0 == length - 1 )
+            {
+                self.display.text = @"0";
+            }
+        }
+        else
+        {
+            self.display.text = @"0";
+        }
+    }
+}
+
+
 @end
