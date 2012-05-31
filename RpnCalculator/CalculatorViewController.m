@@ -127,5 +127,25 @@
     }
 }
 
+- (IBAction)changeSignPressed:(UIButton *)sender 
+{
+    if ( self.userIsInTheMiddleOfEnteringANumber )
+    {
+        NSString *currentNumber = self.display.text;
+        // If the current # the user is entering has a "-"(minus value)
+        if ( [@"-" isEqualToString:[currentNumber substringToIndex:1]] )
+        {
+            self.display.text = [currentNumber substringFromIndex:1];
+        }
+        else
+        {
+            self.display.text = [@"-" stringByAppendingString:currentNumber];
+        }
+    }
+    else
+    {
+        [self operationPressed:sender];
+    }
+}
 
 @end

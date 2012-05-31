@@ -96,6 +96,10 @@
         [self pushOperand:pi];
         result = pi;
     }
+    else if ( [@"+/-" isEqualToString:operation] )
+    {
+        result = -[self popOperand];
+    }
     
     [self pushOperand:result];
     
