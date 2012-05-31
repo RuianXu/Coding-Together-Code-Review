@@ -120,11 +120,8 @@
             if ( 0 == length - 1 )
             {
                 self.display.text = @"0";
+                self.userIsInTheMiddleOfEnteringANumber = NO;
             }
-        }
-        else
-        {
-            self.display.text = @"0";
         }
     }
 }

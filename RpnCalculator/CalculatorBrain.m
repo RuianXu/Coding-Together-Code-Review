@@ -89,7 +89,7 @@
         // calculates the square root of the top operand on the stack
         result = sqrt( [self popOperand] );
     }
-    else if ( [@"pi" isEqualToString:operation] )
+    else if ( [@"π" isEqualToString:operation] )
     {
         // pi is special
         double pi = 3.1415926;
