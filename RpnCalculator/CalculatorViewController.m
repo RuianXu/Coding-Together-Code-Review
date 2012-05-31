@@ -69,6 +69,7 @@
     {
         self.history.text = [self.history.text stringByAppendingFormat:@" "];
         self.history.text = [self.history.text stringByAppendingString:sender.currentTitle];
+        self.history.text = [self.history.text stringByAppendingFormat:@" = "];
         [self enterPressed];
     }
     
