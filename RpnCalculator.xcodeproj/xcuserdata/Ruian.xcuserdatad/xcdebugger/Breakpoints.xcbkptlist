@@ -2,6 +2,7 @@
 <Bucket
    type = "1"
    version = "1.0">
+<<<<<<< Assignment1
    <FileBreakpoints>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -16,4 +17,6 @@
          endingLineNumber = "255">
       </FileBreakpoint>
    </FileBreakpoints>
+=======
+>>>>>>> local
 </Bucket>
